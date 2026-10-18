@@ -1,0 +1,23 @@
+name: AI contract
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r contracts/requirements.txt
+      - run: python scripts/validate_ai_contract.py
+      - name: Check canonical upstream bytes
+        run: |
+          python - <<'PY'
+          import hashlib, json, urllib.request
+          lock = json.load(open('contract.lock.json'))
+          url = f"https://raw.githubusercontent.com/{lock['sourceRepository']}/{lock['sourceRef']}/{lock['path']}"
+          content = urllib.request.urlopen(url, timeout=30).read()
+          assert hashlib.sha256(content).hexdigest() == lock['sha256']
+          PY
