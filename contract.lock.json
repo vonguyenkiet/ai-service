@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "sourceRepository": "supportflow-ai/ai-it-service-desk",
-  "sourceRef": "3de4b745a739e4cf3d7934f778a7a8dd974a89db",
+  "sourceRef": "6dc7f31fe44ce08105d62beec54822e5a0194cac",
   "path": "contracts/ai/v1/openapi.yaml",
   "sha256": "ad1d93230158b9ee66c6e3d0843edafcadde97b01bd2adef62265e4cf7f16428"
 }
