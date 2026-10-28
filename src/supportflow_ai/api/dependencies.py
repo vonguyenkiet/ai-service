@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Annotated
+
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials
 
@@ -9,7 +11,7 @@ from supportflow_ai.application.classification.service import ClassifyTicket
 
 async def authorize_service(
     request: Request,
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)] = None,
 ) -> None:
     await require_service_bearer(request, credentials)
 

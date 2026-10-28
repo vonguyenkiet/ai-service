@@ -31,6 +31,7 @@ def test_rejects_value_type_for_wrong_field():
 
 def test_api_schema_does_not_coerce_invalid_json_score_types():
     from pydantic import ValidationError
+
     from supportflow_ai.api.schemas.classification import ClassificationSuggestion
 
     for invalid_score in (True, False, "0.5"):

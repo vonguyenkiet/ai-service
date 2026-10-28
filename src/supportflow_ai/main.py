@@ -6,8 +6,8 @@ from supportflow_ai.api.errors import register_exception_handlers
 from supportflow_ai.api.middleware import LimitRequestBodyMiddleware
 from supportflow_ai.api.routes.classification import router as classification_router
 from supportflow_ai.api.routes.health import router as health_router
-from supportflow_ai.bootstrap import build_classifier
 from supportflow_ai.application.classification.service import ClassifyTicket
+from supportflow_ai.bootstrap import build_classifier
 from supportflow_ai.config import Settings, get_settings
 from supportflow_ai.observability.logging import configure_logging
 
