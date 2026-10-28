@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 from time import perf_counter
+from typing import Annotated
 
 from fastapi import APIRouter, Depends
 
@@ -27,7 +28,7 @@ router = APIRouter(prefix="/v1", tags=["classification"])
 )
 async def classify_ticket(
     request: ClassificationRequest,
-    use_case: ClassifyTicket = Depends(get_classify_ticket),
+    use_case: Annotated[ClassifyTicket, Depends(get_classify_ticket)],
 ) -> ClassificationResponse:
     started = perf_counter()
 

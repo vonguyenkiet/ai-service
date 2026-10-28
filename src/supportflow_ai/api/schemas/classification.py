@@ -5,7 +5,6 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, model_validator
 
-
 CategoryValue = Literal[
     "ACC", "NET", "VPN", "MAIL", "SW", "HW", "PRINT", "ACCESS", "EQUIP", "SEC", "OTHER"
 ]
@@ -32,7 +31,7 @@ class ClassificationSuggestion(BaseModel):
     score: StrictFloat | None = Field(default=None, ge=0.0, le=1.0)
 
     @model_validator(mode="after")
-    def validate_field_value(self) -> "ClassificationSuggestion":
+    def validate_field_value(self) -> ClassificationSuggestion:
         categories = {
             "ACC", "NET", "VPN", "MAIL", "SW", "HW", "PRINT", "ACCESS", "EQUIP", "SEC", "OTHER"
         }
@@ -55,7 +54,7 @@ class ClassificationResponse(BaseModel):
     suggestions: list[ClassificationSuggestion] = Field(max_length=3)
 
     @model_validator(mode="after")
-    def validate_unique_fields(self) -> "ClassificationResponse":
+    def validate_unique_fields(self) -> ClassificationResponse:
         fields = [item.field for item in self.suggestions]
         if len(fields) != len(set(fields)):
             raise ValueError("Duplicate suggestion fields are not allowed.")

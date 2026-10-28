@@ -6,7 +6,6 @@ from typing import Literal
 from pydantic import SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 _UNSAFE_TOKENS = {
     'replace-with-a-long-random-service-token',
     'changeme',
